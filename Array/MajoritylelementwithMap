@@ -14,7 +14,10 @@ class MajorityElement
 		        int count=map.get(arr[i])+1;
 		        if(count>=arr.length/2){
 		            System.out.print("Element :"+arr[i]);
+		            return;
 		        }
+		        else
+		            map.put(arr[i],count);
 		    }
 		    else{
 		        map.put(arr[i],1);
