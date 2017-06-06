@@ -1,0 +1,39 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		Scanner in=new Scanner(System.in);
+		int noTests=in.nextInt();
+		int size=in.nextInt();
+		int[] arr=new int[size];
+		for(int i=0;i<size;i++){
+		    arr[i]=in.nextInt();
+		}
+		
+		findOddNumber(arr);
+	}
+	
+	static void findOddNumber(int[] arr)
+	{
+	    HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+	    
+	    for(int i=0;i<arr.length;i++){
+	        if(map.containsKey(arr[i])){
+	            int count=map.get(arr[i])+1;
+	            map.put(arr[i],count);
+	        }
+	        else
+	            map.put(arr[i],1);
+	    }
+	    
+	    for(int keys:map.keySet()){
+	        int count=map.get(keys);
+          if(count%2!=0)
+	            System.out.println("Odd occurence number"+keys);
+	            
+	    }
+	}
+	
+}
