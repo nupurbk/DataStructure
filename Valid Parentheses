@@ -1,0 +1,39 @@
+public class Solution {
+    public boolean isValid(String s) {
+        
+        Stack<Character> stack=new Stack<Character>();
+        char[] ch=s.toCharArray();
+        
+        for(char c:ch){
+            if(c=='[' || c=='{' ||c=='(')
+                stack.push(c);
+            else if(c==']' || c=='}'||c==')'){
+                
+                if (stack.isEmpty())
+                    return false;
+                else {
+                        if(!isMatching(stack.pop(),c))
+                            return false;
+                        
+                }
+            }
+                
+        }
+        
+        if(!stack.isEmpty())
+            return false;
+        else 
+            return true;
+        
+    }
+    public boolean isMatching(char a,char b){
+        if (a=='[' && b==']')
+            return true;
+        else if (a=='(' && b==')')
+            return true;
+        else if (a=='{' && b=='}')
+            return true;
+        else
+            return false;
+    }
+}
