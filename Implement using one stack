@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+      Stack<Integer> first=new Stack<Integer>();
+       //Stack<Integer> two=new Stack<Integer>();
+        
+        Scanner in=new Scanner(System.in);
+        int testCases=in.nextInt();
+        
+        for(int i=0;i<testCases;i++){
+            int command=in.nextInt();
+            if(command==1){
+                int element=in.nextInt();
+                insert(first,element);
+            }
+            else if(command==2)
+                {
+                int element=deque(first);
+            }
+            else if(command==3)
+                {
+                    printHead(first);
+            }
+        }
+        
+        }
+    
+    public static void insert(Stack<Integer> first,int element){
+        if(!first.isEmpty()){
+            int top=first.pop();
+            insert(first,element);
+            first.push(top);
+        }
+        else
+            first.push(element);
+        //System.out.print(first);
+    }
+    
+    public static int deque(Stack<Integer> first){
+       
+        return first.pop();
+    }
+    
+    public static void printHead(Stack<Integer> first)
+        {
+            
+           
+                System.out.println(first.peek());
+            
+    }
+}
