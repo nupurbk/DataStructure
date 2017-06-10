@@ -1,0 +1,74 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner in=new Scanner(System.in);
+		int tests=in.nextInt();
+		//array1
+		
+		for(int j=0;j<tests;j++){
+		    int size=in.nextInt();
+		    int[] arr1=new int[size];
+		    for(int i=0;i<size;i++){
+		        arr1[i]=in.nextInt();
+		    }
+		    //array2
+		    //int size2=in.nextInt();
+		    int[] arr2=new int[size];
+		    for(int i=0;i<size;i++){
+		        arr2[i]=in.nextInt();
+		    }
+		
+		
+		if(compare(arr1,arr2))
+		    System.out.println("1");
+	    else
+	        System.out.println("0");
+		}
+	}
+  
+  	static boolean compare(int[] arr1,int[] arr2){
+	    HashMap<Integer,Integer> map1=new HashMap<Integer,Integer>();
+	    
+	    int n=arr1.length;
+	    int m=arr2.length;
+	    int count=0;
+	    if(m!=n)
+	       return false;
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        if(!map1.containsKey(arr1[i]))
+	            map1.put(arr1[i],1); 
+	        else{
+	            count=map1.get(arr1[i]);
+	            count++;
+	            map1.put(arr1[i],count);
+	        }
+	        
+	    }
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        if(!map1.containsKey(arr2[i]))
+	            return false;
+	        
+	        if(map1.get(arr2[i])==0)
+	            return false;
+	         
+	        count=map1.get(arr2[i]);
+	        --count;
+	        map1.put(arr2[i],count);
+	        
+	    }
+	    
+	    for(int i=0;i<n;i++){
+	        if(map1.get(arr2[i])>0)
+	            return false;
+	    }
+	    return true;
+	}
+}
