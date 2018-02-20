@@ -1,0 +1,70 @@
+// A Java program to print all anagrams together
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.*;
+public class GFG 
+{ 
+	// class for each word of duplicate array
+	static class Word 
+	{
+		String str; // to store word itself
+		int index; // index of the word in the 
+				// original array
+		
+		// constructor
+		Word(String str, int index)
+		{
+			this.str = str;
+			this.index = index;
+		}
+	}
+	
+
+
+	// Given a list of words in wordArr[],
+	static void printAnagramsTogether(String wordArr[],
+											int size)
+	{
+		// Step 1: Create a copy of all words present
+		// in given wordArr. The copy will also have 
+		// original indexes of words
+		List<Word> dupArray = new ArrayList<>();
+	
+	    for(int i=0;i<size;i++){
+	        dupArray.add(new Word(wordArr[i],i));
+	    }
+		// Step 2: Iterate through all words in 
+		// dupArray and sort individual words.
+		int i;
+		for (Word value:dupArray){
+			char[] char_arr = value.str.toCharArray();
+			Arrays.sort(char_arr);
+			value.str= new String(char_arr);
+		}
+	
+		// Step 3: Now sort the array of words in 
+		// dupArray
+		Collections.sort(dupArray, new Comparator<Word>(){
+		    
+		    public int compare(Word a,Word b){
+		        return a.str.compareTo(b.str);
+		    }
+		    
+		});
+		
+		// Step 4: Now all words in dupArray are together,
+		// but these words are changed. Use the index 
+		// member of word struct to get the corresponding
+		// original word
+		for (Word value:dupArray)
+			System.out.print(wordArr[value.index]+" ");
+	}
+	
+	// Driver program to test above functions
+	public static void main(String args[])
+	{
+		String wordArr[] = {"cat", "dog", "tac", "god", "act"};
+		int size = wordArr.length;
+		printAnagramsTogether(wordArr, size);
+	}
+}
